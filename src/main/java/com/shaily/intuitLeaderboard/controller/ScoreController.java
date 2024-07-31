@@ -7,10 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.shaily.intuitLeaderboard.utils.Constants.SCORE_UPDATE_FAILED;
 import static com.shaily.intuitLeaderboard.utils.Constants.SUCCESSFUL_SCORE_UPDATE;
@@ -22,8 +19,8 @@ public class ScoreController {
     @Autowired
     ScoreService scoreService;
 
-    @GetMapping("/getScore")
-    public ScoreResponse getScore(@RequestBody final String playerId) {
+    @GetMapping("/getScore/{playerId}")
+    public ScoreResponse getScore(@PathVariable("playerId") final String playerId) {
         return scoreService.getScore(playerId);
     }
 
